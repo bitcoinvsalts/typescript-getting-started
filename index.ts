@@ -1,12 +1,13 @@
-import express from 'express';
-import path from 'path';
+import express, { Application, Request, Response } from 'express'
 
-const PORT = process.env.PORT || 5000;
-const server = express();
+const app: Application = express()
 
-express()
-  .use(express.static(path.join(__dirname, '../public')))
-  .set('views', path.join(__dirname, '../views'))
-  .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('pages/index'))
-  .listen(PORT, () => console.log(`Listening on ${PORT}`));
+const port: number = 3001
+
+app.get('/toto', (req: Request, res: Response) => {
+    res.send('Hello toto')
+})
+
+app.listen(port, function () {
+    console.log(`App is listening on port ${port} !`)
+})
